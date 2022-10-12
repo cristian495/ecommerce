@@ -14,6 +14,11 @@ const ProductDetails = ({
   product: ProductType;
   products: Array<ProductType>;
 }) => {
+  const { image, name, price, details } = product;
+  const [index, setIndex] = useState(0);
+  const [localQty, setLocalQty] = useState(1);
+  const { addItem, toggleCart } = useCartState();
+  
   if (!product) {
     return (
       <div className="product-detail-container" style={{ height: "60vh" }}>
@@ -22,10 +27,7 @@ const ProductDetails = ({
     );
   }
 
-  const { image, name, price, details } = product;
-  const [index, setIndex] = useState(0);
-  const { addItem, toggleCart } = useCartState();
-  const [localQty, setLocalQty] = useState(1);
+
 
   const decrementLocalQty = () => {
     const newVal = localQty > 1 ? localQty - 1 : 1;
